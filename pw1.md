@@ -14,10 +14,12 @@ The source for [the exercise](https://terokarvinen.com/2021/python-web-service-f
 
 ### a) Asenna Django-kehitysympäristö. / Install the Django development environment
 
-First I needed to install VirtualEnv, so I did. A good tutorial to do this can be found here: https://terokarvinen.com/2022/django-instant-crm-tutorial/
+A good tutorial to do this can be found here: https://terokarvinen.com/2022/django-instant-crm-tutorial/
 
+First I needed to install VirtualEnv, so I did. 
+	
 	sudo apt-get update && sudo apt-get install -y virtualenv
-
+	
 After that I created a virtual environment for my Python.
 
 	cd
@@ -49,9 +51,9 @@ That worked out, eventhought I had to change my VM to a fresh one that didn't ha
 
 ### b) Lisää omia kenttiä malliin. / Add your own fields to the model
 
-I did part c of this exercise first, so that I could check my models out in real time.
+I did part c of this exercise first, so that I could check my models out in real time. **You need a project to start apps, so you'll have to do things in that order too if you're trying to replicate my results**
 
-The process for for my app started by creating an app.
+The process for my app started by creating an app.
 
 	./manage.py startapp rvrent
 	micro rently/settings.py
@@ -92,7 +94,7 @@ class Rv(models.Model):
 
 
 ```Python
-admin.py
+#admin.py
 
 from django.contrib import admin
 from . import models
@@ -100,13 +102,13 @@ from . import models
 admin.site.register(models.Rv)
 ```
 
-After these additions I did the database migrations, logged into my admin console and checked the results out.
+After these additions I did database migrations, logged into my admin console and checked the results out.
 
 
 ![pic 4. Rvrent has a beginning](/pics/pw1/4.png)  
 *My model was up and running*  
 
-I decided to make a couple of changes to my model to add content.
+I decided to make a couple of changes to my model to add content. Source for the dropdown menu: https://stackoverflow.com/questions/31130706/dropdown-in-django-model
 
 	micro rvrent/models.py
 		
@@ -132,7 +134,8 @@ class Rv(models.Model):
    maxPassangers = models.IntegerField(default = 5)
    beds = models.IntegerField(default = 0)
    otherInfo = models.TextField(default="")
-   
+
+   #this defines the printout of all the objects in this class
    def __str__(self):
        return f"{self.vehicle} {self.modelYear}"
 ```
