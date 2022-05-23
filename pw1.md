@@ -180,3 +180,4 @@ To edit users and/or make the superusers  do these steps:
 ![pic 3. Django superuser had the right to add users](/pics/pw1/3.png)  
 *The new admin could add users*  
 
+I stopped work @ 16.27.
