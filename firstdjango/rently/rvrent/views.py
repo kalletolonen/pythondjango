@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from django.views.generic import ListView #class based generic view
+from . import models
 
-# Create your views here.
+class RvListView(ListView): #inherits ListView
+	model = models.Rv #in models.py

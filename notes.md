@@ -1,3 +1,4 @@
+
 ## Notes
 
 Gandhi for name server
@@ -52,7 +53,53 @@ print(cat.sound())
 print(cat.whatareyou())
 ```
 
+## Django
 
+*Request*
+User -> urls -> views -> models -> template
+
+Empty value for model field: blank= True, null=True
+
+Google: class based generic views
+
+### Models
+
+### Views
+
+"Default view"
+urls.py
+in path an empty string
+
+### Admin
+
+### URLS
+
+project/project/urls.py
+
+```
+#new view
+
+from myapp import views
+
+urlpatterns, add
+path('customer/', views.CustomerListView.as_view()), #entrypoint to program
+
+micro app/views.py
+->
+from django.views.generic import ListView #class based generic view
+from . import models
+
+class CustomerListView(ListView): #inherits ListView
+	model = models.Customer #in models.py
+
+Models ->
+myapp
+-> mkdir templates
+-> mkdir myapp
+crm/templates/crm #add another app folder
+micro customer_list.html
+
+{{ object_list  }}
 
 ## Tips
 
@@ -65,6 +112,35 @@ cp -nv = doesn't overwrite files
 MDN Django tutorials
 Django documentation / foreign key
 
+Explain parameters when using commands.
+
+Explain professional terms.
+
+Explain the purpose!
+
+df -h #check disk status
+free -h #check ram
+
+pandoc for md to html
+-> file.md -o target.html
+
+fg brings the last process to foreground that was put to background with ctrl + z  in cli.
+
+In Micro:
+retab can fix indendation errors (mixed tabs & spaces)
+
+### Network errors
+
+Wikipedia internet protocol suite.
+	
+	ip a
+	ip routes
+	
+1. Try out ping to your ip
+2. Try out ping to router
+3. Try out ping to 8.8.8.8
+4. Try out host to known site
+5. Try out: time host domain
 
 ## Django
 - models is the file that contains models and forms  

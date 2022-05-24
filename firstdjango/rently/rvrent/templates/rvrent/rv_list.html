@@ -1,0 +1,9 @@
+<h1>foobar bar foo rvlist</h1>
+
+{% for rv in object_list %}
+    <p>Vehicle: {{ rv.vehicle }} <br> Model year: {{ rv.modelYear }}<br>
+    Info: {{ rv.otherInfo }}</p>
+    
+{% empty %}
+	<p>No rv's yet!</p>
+{% endfor %}

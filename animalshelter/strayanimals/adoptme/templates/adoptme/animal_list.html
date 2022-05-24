@@ -1,0 +1,7 @@
+<h1>foobar bar foo available animal list</h1>
+
+{% for animal in object_list %}
+    <p>Animal: {{ animal.animal }} <br> Name: {{ animal.name }}</p>
+{% empty %}
+	<p>No animals yet!</p>
+{% endfor %}

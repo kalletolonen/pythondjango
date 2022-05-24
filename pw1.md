@@ -62,6 +62,7 @@ I added my app to settings.py and localhost to ALLOWED_HOSTS (to mitigate the ri
 
 ```
 ALLOWED_HOSTS = ['localhost', '127.0.0.1'] #added this
+#UPDATE: Allowed_hosts is not needed for security.
 
 # Application definition
 
@@ -104,6 +105,7 @@ admin.site.register(models.Rv)
 
 After these additions I did database migrations, logged into my admin console and checked the results out.
 
+*Update: The purpose of this model is to create a prelimary model for renting recreational vehicles.*  
 
 ![pic 4. Rvrent has a beginning](/pics/pw1/4.png)  
 *My model was up and running*  
