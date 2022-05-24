@@ -12,7 +12,7 @@ The source for [the exercise](https://terokarvinen.com/2021/python-web-service-f
 *Mem: 16 Gt LPDDR4X*  
 *Storage: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD*  
 
-### a) Tee alusta lähtien uusi Django-projekti. Tee siihen sivu, joka listaa tietueita tietokannasta ilman kirjautumista. Valitse jokin muu aihe kuin aiemman esimerkin CRM. Aivan simppeli esimerkkiprojekti riittää, mutta valitse sille jokin esimerkkiaihe. / Make a vrand new Django project that has a view that lists objects from a database
+### a) Tee alusta lähtien uusi Django-projekti. Tee siihen sivu, joka listaa tietueita tietokannasta ilman kirjautumista. Valitse jokin muu aihe kuin aiemman esimerkin CRM. Aivan simppeli esimerkkiprojekti riittää, mutta valitse sille jokin esimerkkiaihe. / Make a brand new Django project that has a view that lists objects from a database
 
 A good tutorial for the first part can be found here: https://terokarvinen.com/2022/django-instant-crm-tutorial/
 
