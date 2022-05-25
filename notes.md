@@ -70,9 +70,35 @@ Google: class based generic views
 urls.py
 in path an empty string
 
+**Detail view** (see new view below)
+#urls.py
+from app import views
+
+path('asdf/',views.TaskListView.as_view()),
+path('asdf/<int:pk>',views.TaskDetailView.as_view()), #int as primary key
+
+app/views.py
+import DetailView
+
+class TaskDetailView(DetailView):
+	models.MyModel
+
+template:
+{{ object }}
+
+
+
 ### Admin
 
 ### URLS
+
+INCLUDES
+
+from django.urls import path, includes
+path('todo/, include("todo.urls")), #entrypoint to program
+
+-> todo urls.py
+-> the same as urls.py in project urls before
 
 project/project/urls.py
 
@@ -100,8 +126,102 @@ crm/templates/crm #add another app folder
 micro customer_list.html
 
 {{ object_list  }}
+```
+
+## Templates
+
+SINGLE VIEW
+In Template
+{% for i in object_list %}
+	<p>
+		<a href="{{ task.get_absolute_url }}">
+		{{ i.attributenamefrommodels.py }}
+		</a>
+	</p>
+{% endfor %}
+
+In Models.py
+
+def get_absolute_url(self):
+	return f"/mypathfromurls.py/{self.pk}"
+
+
+Functions to model (ie. calculating the energy use on a run)
+
+UPDATE
+In Template
+
+{% for i in object_list %}
+	<p>
+		<a href="{{ task.get_absolute_url }}">
+		{{ i.attributenamefrommodels.py }}
+		<a href= "{{ task.get_absolute_url }}">Update</a>
+		</a>
+	</p>
+{% endfor %}
+
+In Urls
+path('myapp/update/<int:pk>'), views.MyappUpdateView.as_view())
+
+In views
+import UpdateView
+
+Class MyappUpdateView(UpdateView):
+	model = models.MyModel
+	fields = "__all__" #you can list fields later on
+
+in Templete
+myapp_form.html
+
+<form method=post>{% csrf_token %} #token makes sure it's not a forged request
+	
+	{{ form.as_p }} #as paragraph
+	{{ form.as_t }} #as table
+	<input type="submit">
+
+</form>
+
+CREATE
+In Template
+
+myapp_list.html
+<p>
+	<a href="/myapp/new/">New</a>
+</p>
+
+In Urls
+urls.py
+
+add path
+path('myapp/new'). views.MyappCreateView()), #typos
+
+in Views
+add class
+
+DELETE
+https://www.geeksforgeeks.org/deleteview-class-based-views-django/
+in Template
+
+<p>
+	<a href="{{task.get_absolute_url}}/delete">Delete</a>
+</p>
+
+In Urls
+path('myapp/<int:pk>/delete'). views.MyappDeleteView.as_View()), #typos
+
+Views
+Add import
+Create class
+
+in Template
+create myapp_confirm_delete.html
+{{ object }}
+
+-> Django 3.0 documentation from Karvinen
 
 ## Tips
+
+head #a command to list files with file name neatly, takes multiple params.
 
 Jupyter for CLI
 Godot for games
@@ -128,6 +248,8 @@ fg brings the last process to foreground that was put to background with ctrl + 
 
 In Micro:
 retab can fix indendation errors (mixed tabs & spaces)
+
+varlog/warlog #sudo commands
 
 ### Network errors
 
