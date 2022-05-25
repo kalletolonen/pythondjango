@@ -16,6 +16,11 @@ The source for the code was our lecture on 2022/05/25 by [Tero Karvinen](https:/
 
 # a) Vapaaehtoinen: CRUD. Tee alusta lähtien Django-ohjelma, jossa voit luoda (C), lukea (R), muokata (U) ja poistaa (D) tietueita. Keksi sille joku aihe, vaikka kalavale / tall tales. Tässä ohjelmassa ei tarvitse autentikoida käyttäjiä. Tästä tehtävästä ei tarvitse tehdä yksityiskohtaista raporttia, palauta ohjelman lähdekoodi, README.md ja ruutukaappaus. / Make a Django CRUD, return source code & README.
 
+The project is about a list of RV's (Recreational Vehicles).
+
+The repo with source can be found at:
+https://github.com/kalletolonen/crud-django
+
 ## The steps I took (just to keep a note for myself) for Django & Read:
 1. Start a fresh VM
 2. Update & Install bash-completion, micro and virtualenv
@@ -75,9 +80,9 @@ The source for the code was our lecture on 2022/05/25 by [Tero Karvinen](https:/
 
 Time was 17.55, so 1 hour from empty VM to working CRUD while taking these notes.
 
-### Source code
+## Source code
 
-## HTML
+### HTML
 
 ```Html
 #rv_confirm_delete.html
@@ -127,7 +132,7 @@ Time was 17.55, so 1 hour from empty VM to working CRUD while taking these notes
 <a href="/new">New</a>
 ```
 
-##PYTHON
+### PYTHON
 
 ```Python
 #models.py
@@ -209,3 +214,5 @@ INSTALLED_APPS = [
     'rentrv', #Added this
 ]
 ```
+
+I quit at 18.37.
