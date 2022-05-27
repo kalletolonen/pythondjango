@@ -64,6 +64,22 @@ Google: class based generic views
 
 ### Models
 
+### Base template
+in template folder
+base.html
+
+{% block content %}
+This is the content that will be overwritten.
+{% endblock content %}
+
+**in other template**
+{% extends "templates/myapp/base.html" %}
+
+{% block content %}
+other content
+{% endblock content %}
+
+
 ### Views
 
 "Default view"
@@ -251,6 +267,13 @@ retab can fix indendation errors (mixed tabs & spaces)
 
 varlog/warlog #sudo commands
 
+template:
+{% debug %}
+
+tags and filters -> from Django-course materials
+create view -> context/add context(?) you can bring stuff from db to create view
+
+
 ### Network errors
 
 Wikipedia internet protocol suite.
@@ -283,19 +306,33 @@ Apps are sub-programs
 
 ### Miniproject option 1
 
--A site for renting out RV's
--An individual booking calendar for each vehicle
--Renter can set renting terms: minimum rent period, day price & pre-set car properties (travel outside host country, pets, 230-v electricity, navigation, etc. )
--Comments for renter and vehicles (peer reviewed rentals)
--Search for customers (user sets date of travel & budget + more properties if needed)
--Login for customers & renters & admin
--Email confirmations
+- A site for renting out RV's
+- Booking calendar for vehicles
+- Renter can set renting terms: minimum rent period, day price & pre-set car properties (travel outside host country, pets, 230-v electricity, navigation, etc. )
+- Comments for renter and vehicles 
+- Search for customers (user sets date of travel & budget + more properties if needed)
+-Login for admin
 
 #### Stretch goals
+
+**User auth**
+-Login for customers & renters & admin
+
+**Views**
+- Renter can get easy total sums of key metrics
+- Customer can view their rents and key metrics
+- Peer reviews for renters and customers (Confirmed rent from the renter required)
+
+**Prices**
+-An individual price calendar for each vehicle (day price (week price is calculated from that))
+
+**Confirmations**
+-Email confirmations
 
 **Paymment integration**
 - Renter gives an account number
 - Rentee makes payment -> a reservation is populated 
+- I take a cut for the service that's provided
 
 ### Miniproject option 2
 
