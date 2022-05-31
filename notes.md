@@ -1,4 +1,3 @@
-
 ## Notes
 
 Gandhi for name server
@@ -273,6 +272,8 @@ template:
 tags and filters -> from Django-course materials
 create view -> context/add context(?) you can bring stuff from db to create view
 
+realpath gives the full path with file name in cli
+
 
 ### Network errors
 
@@ -307,34 +308,184 @@ Apps are sub-programs
 ### Miniproject option 1
 
 - A site for renting out RV's
-- Booking calendar for vehicles
 - Renter can set renting terms: minimum rent period, day price & pre-set car properties (travel outside host country, pets, 230-v electricity, navigation, etc. )
 - Comments for renter and vehicles 
-- Search for customers (user sets date of travel & budget + more properties if needed)
--Login for admin
+- Login for admin
 
 #### Stretch goals
 
+M = Maybe
+D = Don't know how to do at all
+
 **User auth**
--Login for customers & renters & admin
+- Login for customers & renters & admin M
 
 **Views**
-- Renter can get easy total sums of key metrics
-- Customer can view their rents and key metrics
-- Peer reviews for renters and customers (Confirmed rent from the renter required)
+- Booking calendar for vehicles M
+- Renter can get easy total sums of key metrics M
+- Customer can view their rents and key metrics M
+- Peer reviews for renters and customers (Confirmed rent from the renter required) D
+- Search for customers (user sets date of travel & budget + more properties if needed) D
 
 **Prices**
--An individual price calendar for each vehicle (day price (week price is calculated from that))
+-An individual price calendar for each vehicle (day price (week price is calculated from that)) D
 
 **Confirmations**
--Email confirmations
+-Email confirmations D
 
 **Paymment integration**
-- Renter gives an account number
-- Rentee makes payment -> a reservation is populated 
-- I take a cut for the service that's provided
+- Renter gives an account number M
+- Rentee makes payment -> a reservation is populated D
+- I take a cut for the service that's provided D
 
 ### Miniproject option 2
 
 -Wordle clone with word definitions
 -Users can comment on words and suggest improvements
+
+
+### Production install
+
+Don't upload private key for settings.py anywhere public!
+
+Karvinen.com -> production install
+
+0. Fix server settings
+1. local devdjango folder
+2. Make sure your project name is same on server & locally
+3. do your dev
+4. Login to server
+5. scp -r manage.py app/ project/ host@domain:/locationofchoice
+6. touch wsgi
+7. create superuser on the server
+8. make migrations
+
+On the next run:
+1. Dev
+2. makemigrations, migrate
+3. ssh user@domain 'touch wsgi'
+4. ssh user@domain 'source activate
+5. ssh user@domain 'migrate' #no need for makemigrations
+6. ssh ";"-character allows many commands at once, like &&
+
+## Copying from dev to production
+
+ssh-copy
+scp -r file folder/ user@hostname:targetfolder/
+
+rsync - install to host and target
+rsync -v -a folder user@hostname:targetfolder -> -copy verbose -all
+
+rsync -v -a --exclude=esim/settings.py --exclude=esim2/nononoo.txt folder user@hostname:targetfolder -> -copy verbose -all
+
+micro Makefile in directory
+```
+all:
+	rsync-command
+```
+
+make -> runs Makefile
+
+## Login
+1. Activate env
+2. Test functionality
+3. views.py
+
+```
+-import loginrequiredmixin
+
+class View(LoginRequiredMixin, View):
+	pass
+```
+
+4. urls.py
+
+```
+from django.contrib.auth.views  import LoginView
+
+path('accounts/login/', LoginView.as_view())
+```
+
+5. login template
+```
+templates/registration/login.html
+<form method=post> csrf-token
+{{form.as_p}}
+<input type=submit>
+</form>
+```
+
+## Logout
+
+1. Base.html -> logout link
+/logout?next=/app/
+-> or as parameter in urls.
+
+2. urls.py
+
+```Python
+import logoutview
+path('accounts/logout/', LoginView.as_view(next_page="nönönönöö")),
+```
+
+## Registration
+
+1. base.html -> register link
+2. urls
+
+```
+path('accounts/register/', views.CreateView.as_view()),
+```
+
+3. view.py
+import django.auth.contribs.auth.form UserCreationForm
+
+```
+class registerView(CreateView):
+	form_class = UserCreationForm
+	template_name ="registration/register.html"
+	success_url="loginpageurl/"
+```
+
+4. register.hmtl
+```
+copy form
+```
+
+## User Spesific Views
+settings.py -> settings.LOGIN_REDIRECT_URL ="/nononon"
+settings.py -> settings.LOGOUT_REDIRECT_URL ="/nononon"
+
+1. models.py
+```Python
+from django.contrib.auth.models import User
+class asdf():
+	owner =  models.ForeignKey(User, on_delete=models.CASCADE)
+```
+2. Migrate
+3. view.py
+
+```Python
+class yourview(CreateView):
+List fields without owner
+
+	def form_valid(self, form):
+		form.instance.owner = self.request.user #who made the form request
+		return super().form_valid(form) #call CreateView
+```
+
+## unique views
+
+1. views.py
+```Python
+class MyClass (LoginRequiredMixin, ListView): #remove previous
+	def get_queryset(self):
+		return models.MyTask.objects.filter(owner=self.request.user)
+	# YOU HAVE TO ADD QUERYSET TO ALL VIEWS!
+	List, Single, Update, Delete
+```
+
+		
+
+
+
