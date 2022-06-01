@@ -236,6 +236,10 @@ create myapp_confirm_delete.html
 
 ## Tips
 
+f5 bot
+
+Apache bench
+
 head #a command to list files with file name neatly, takes multiple params.
 
 Jupyter for CLI
@@ -308,14 +312,14 @@ Apps are sub-programs
 ### Miniproject option 1
 
 - A site for renting out RV's
-- Renter can set renting terms: minimum rent period, day price & pre-set car properties (travel outside host country, pets, 230-v electricity, navigation, etc. )
-- Comments for renter and vehicles 
 - Login for admin
 
 #### Stretch goals
 
-M = Maybe
-D = Don't know how to do at all
+
+**Models**
+- Renter can set renting terms: minimum rent period, day price & pre-set car properties (travel outside host country, pets, 230-v electricity, navigation, etc. )
+- Comments for renter and vehicles 
 
 **User auth**
 - Login for customers & renters & admin M
@@ -485,7 +489,22 @@ class MyClass (LoginRequiredMixin, ListView): #remove previous
 	List, Single, Update, Delete
 ```
 
-		
 
 
 
+
+
+Kuvien lisääminen on aika helppoa onnistuu Pillow kirjastolla ja ImageFieldillä, tossa esimerkki: 
+https://github.com/kajami/python-course
+
+Making queries
+
+./manage.py shell
+esineen perään
+tabulaattori
+? help
+?? source code
+
+touch wsgi local
+copy rsync exclude db + settings.py
+ssh -> source -> ./manage.py migrate
